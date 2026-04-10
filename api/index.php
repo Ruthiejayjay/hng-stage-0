@@ -1,18 +1,19 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
-define('LARAVEL_START', microtime(true));
+echo "PHP is working\n";
 
-$_ENV['APP_STORAGE'] = '/tmp';
+// Test 1: Can we find autoload?
+if (!file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    die("ERROR: vendor/autoload.php not found. Path: " . __DIR__);
+}
+echo "Autoload found\n";
 
-// Bootstrap Laravel
+// Test 2: Can we load it?
 require __DIR__ . '/../vendor/autoload.php';
+echo "Autoload loaded\n";
 
+// Test 3: Can we boot Laravel?
 $app = require_once __DIR__ . '/../bootstrap/app.php';
-
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-
-$request = Illuminate\Http\Request::capture();
-$response = $kernel->handle($request);
-$response->send();
-
-$kernel->terminate($request, $response);
+echo "Laravel booted\n";
