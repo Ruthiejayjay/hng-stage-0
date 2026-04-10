@@ -1,8 +1,18 @@
 <?php
 
+define('LARAVEL_START', microtime(true));
+
 $_ENV['APP_STORAGE'] = '/tmp';
 
-$_SERVER['SCRIPT_FILENAME'] = __DIR__ . '/../public/index.php';
-$_SERVER['SCRIPT_NAME'] = '/index.php';
+// Bootstrap Laravel
+require __DIR__ . '/../vendor/autoload.php';
 
-require __DIR__ . '/../public/index.php';
+$app = require_once __DIR__ . '/../bootstrap/app.php';
+
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+
+$request = Illuminate\Http\Request::capture();
+$response = $kernel->handle($request);
+$response->send();
+
+$kernel->terminate($request, $response);

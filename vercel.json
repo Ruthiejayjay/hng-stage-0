@@ -12,5 +12,11 @@
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
-  ]
+  ],
+  "env": {
+    "APP_STORAGE": "/tmp",
+    "CACHE_DRIVER": "array",
+    "SESSION_DRIVER": "array",
+    "LOG_CHANNEL": "stderr"
+  }
 }
