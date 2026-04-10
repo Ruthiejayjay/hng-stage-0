@@ -1,6 +1,7 @@
 <?php
 
-// Point to Laravel's public entry point
+$_ENV['APP_STORAGE'] = '/tmp';
+
 $_SERVER['SCRIPT_FILENAME'] = __DIR__ . '/../public/index.php';
 $_SERVER['SCRIPT_NAME'] = '/index.php';
 
